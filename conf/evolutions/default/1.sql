@@ -31,14 +31,26 @@ create table users (
   constraint pk_users primary key (id))
 ;
 
+create table sessions (
+  id                        bigint not null,
+  user_id                   bigint,
+  device                    varchar(255),
+  date                      timestamp,
+  constraint pk_sessions primary key (id))
+;
+
 create sequence local_token_seq;
 
 create sequence profiles_seq;
 
 create sequence users_seq;
 
+create sequence sessions_seq;
+
 alter table profiles add constraint fk_profiles_user_1 foreign key (user_id) references users (id) on delete restrict on update restrict;
 create index ix_profiles_user_1 on profiles (user_id);
+alter table sessions add constraint fk_sessions_user_2 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_sessions_user_2 on sessions (user_id);
 
 
 
@@ -52,6 +64,8 @@ drop table if exists profiles;
 
 drop table if exists users;
 
+drop table if exists sessions;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists local_token_seq;
@@ -59,4 +73,6 @@ drop sequence if exists local_token_seq;
 drop sequence if exists profiles_seq;
 
 drop sequence if exists users_seq;
+
+drop sequence if exists sessions_seq;
 

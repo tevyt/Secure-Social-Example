@@ -23,10 +23,14 @@ public class User extends Model {
     public Date lastLogin;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<UserSession> sessions;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public List<Profile> identities;
 
     public User(Profile profile){
 
+        sessions = new ArrayList<UserSession>();
         identities = new ArrayList<Profile>();
         this.identities.add(profile);
         lastLogin = new Date();

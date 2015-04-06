@@ -1,0 +1,22 @@
+@(sessions: java.util.List[UserSession])
+@main("Sessions"){
+    <table class="table table-striped">
+        <th>
+            User
+        </th>
+        <th>
+            Device
+        </th>
+        <th>
+            Date
+        </th>
+
+        @for(session <- sessions){
+            <tr>
+                <td>@session.user.id</td>
+                <td>@session.device</td>
+                <td>@session.date</td>
+            </tr>
+        }
+    </table>
+}
