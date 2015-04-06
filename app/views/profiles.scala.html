@@ -1,0 +1,9 @@
+@(profiles: java.util.List[Profile])
+
+@main("Profiles"){
+    <h1>Profiles</h1>
+    @for(profile <- profiles){
+        <img src="@profile.avatarUrl" height="42" width="42">
+        <br>
+    }
+}

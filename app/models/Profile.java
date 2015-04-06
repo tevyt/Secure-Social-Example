@@ -21,6 +21,7 @@ public class Profile extends Model {
     public String fullName;
     public String email;
     public String avatarUrl;
+    public static Finder<Long , Profile> find = new Finder<Long, Profile>(Long.class , Profile.class);
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -3,6 +3,7 @@ package controllers;
 
 import models.User;
 import models.UserSession;
+import models.Profile;
 import play.mvc.*;
 
 import securesocial.core.RuntimeEnvironment;
@@ -51,6 +52,10 @@ public class Application extends Controller {
     
     public static Result users(){
         return ok(users.render(User.find.all()));
+    }
+
+    public static Result profiles(){
+        return ok(profiles.render(Profile.find.all()));
     }
 
 }
