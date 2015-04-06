@@ -1,0 +1,24 @@
+@(user: User , primary: Profile, env: securesocial.core.RuntimeEnvironment[User])
+@import securesocial.core.AuthenticationMethod._
+@import Http.Context.Implicit
+
+@main("Logged in"){
+    <img src="@primary.avatarUrl"/>
+    <h5>Linked Accounts</h5>
+    <ul>
+        @for(identity<- user.identities ){
+            <li>@identity.providerId</li>
+        }
+    </ul>
+    <span>Link this account to
+        @env.providers.values.map { provider =>
+            @if( provider.authMethod == OAuth1 || provider.authMethod == OAuth2 ) {
+                @defining( "images/providers/%s.png".format(provider.id) ) { imageUrl =>
+                    <a href="@env.routes.authenticationUrl(provider.id, Some("/link-result"))"> <img src="@securesocial.controllers.routes.Assets.at(imageUrl)"/></a>
+                }
+            }
+        }
+    </span>
+    <br>
+    <a class="btn" href="@securesocial.controllers.routes.LoginPage.logout()">Logout</a>
+}
