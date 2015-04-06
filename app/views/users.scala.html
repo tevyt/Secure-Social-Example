@@ -1,0 +1,14 @@
+@(users :java.util.List[User])
+
+@main("Users"){
+    <h1>Users</h1>
+
+    @for(user <- users){
+        <h1> @user.id </h1>
+        <ul>
+            @for(profile <- user.identities){
+                <li>@profile.providerId</li>
+             }
+        </ul>
+    }
+}

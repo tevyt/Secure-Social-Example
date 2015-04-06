@@ -48,4 +48,9 @@ public class Application extends Controller {
         return ok(sessions.render(UserSession.find.all()));
     }
 
+    
+    public static Result users(){
+        return ok(users.render(User.find.all()));
+    }
+
 }
