@@ -42,7 +42,8 @@ public class Application extends Controller {
 
     @SecuredAction
     public static Result link(){
-        return ok("Your accounts have been linked");
+        flash("Your accounts have been linked");
+        return redirect("/");
     }
 
     public static Result sessions(){
