@@ -1,8 +1,9 @@
-@(user: User , primary: Profile, env: securesocial.core.RuntimeEnvironment[User])
+@(message: String , user: User , primary: Profile, env: securesocial.core.RuntimeEnvironment[User])
 @import securesocial.core.AuthenticationMethod._
 @import Http.Context.Implicit
 
 @main("Logged in"){
+    <h1>@message</h1>
     <img src="@primary.avatarUrl"/>
     <h5>Linked Accounts</h5>
     <ul>

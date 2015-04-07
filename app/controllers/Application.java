@@ -22,6 +22,10 @@ public class Application extends Controller {
 
     @SecuredAction
     public static Result index() {
+        String message = flash("success");
+        if(message == null){
+            message = "Welcome";
+        }
         User user = (User)ctx().args.get(SecureSocial.USER_KEY);
         List<UserSession> sessions = UserSession.find.all();
         boolean stored = false;
@@ -37,12 +41,12 @@ public class Application extends Controller {
             user.sessions.add(session);
             user.update();
         }
-        return ok(index.render(user,user.identities.get(0), SecureSocial.env()));
+        return ok(index.render(message ,user,user.identities.get(0), SecureSocial.env()));
     }
 
     @SecuredAction
     public static Result link(){
-        flash("Your accounts have been linked");
+        flash("success" , "Your accounts have been linked");
         return redirect("/");
     }
 
